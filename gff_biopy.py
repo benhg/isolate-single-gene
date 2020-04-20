@@ -12,7 +12,8 @@ for rec in GFF.parse(in_handle, base_dict=seq_dict):
     sequence = rec.seq
     taxon = rec.id
     print(rec)
-    print(rec.__dict__.keys())
+    print(rec.description)
+    print(rec.features)
 
 #in_gff = GFF.parse(in_handle, base_dict=seq_dict)
 
