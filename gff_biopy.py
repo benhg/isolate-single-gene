@@ -12,7 +12,7 @@ for rec in GFF.parse(in_handle, base_dict=seq_dict):
     sequence = rec.seq
     taxon = rec.id
     print(rec)
-    print(dict(rec))
+    print(rec.__dict__.keys())
 
 #in_gff = GFF.parse(in_handle, base_dict=seq_dict)
 
