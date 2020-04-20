@@ -1,4 +1,3 @@
-
 from BCBio import GFF
 from Bio import SeqIO
 
@@ -9,7 +8,13 @@ in_seq_handle.close()
 
 in_file = "locations.gff3"
 in_handle = open(in_file)
-for rec in GFF.parse(in_handle, base_dict=seq_dict):
-    print(rec)
-in_handle.close()
+#for rec in GFF.parse(in_handle, base_dict=seq_dict):
+#    sequence = rec.seq
+#    taxon = rec.id
+#    #print(f">{taxon}\n{sequence}\n")
 
+in_gff = GFF.parse(in_handle, base_dict=seq_dict)
+out_handle = open("new_gff_annotated.gff", "w")
+GFF.write(in_gff, out_handle)
+
+in_handle.close()
