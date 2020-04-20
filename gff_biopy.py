@@ -25,5 +25,3 @@ with open("IPedibility_18S_guesses.fasta", "w") as fh:
                 if guess_number == 3:
                     guess_number = 1
 
-#in_gff = GFF.parse(in_handle, base_dict=seq_dict)
-
