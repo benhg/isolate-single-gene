@@ -17,7 +17,7 @@ for rec in GFF.parse(in_handle, base_dict=seq_dict):
             feature_loc = feature.location
             start = feature_loc._start
             end = feature_loc._end
-            print(start.__dict__.keys())
+            print(start)
             guess_number += 1
             if guess_number == 2:
                 guess_number = 0
