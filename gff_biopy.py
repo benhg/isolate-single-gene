@@ -14,7 +14,7 @@ for rec in GFF.parse(in_handle, base_dict=seq_dict):
     # print(rec)
     print(rec.description)
     for feature in rec.features:
-    	print(feature.__dict__.keys())
+    	print(feature["qualifiers"]["Name"])
 
 #in_gff = GFF.parse(in_handle, base_dict=seq_dict)
 
