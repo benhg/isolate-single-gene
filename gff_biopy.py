@@ -8,13 +8,10 @@ in_seq_handle.close()
 
 in_file = "input_gff3.gff3"
 in_handle = open(in_file)
-#for rec in GFF.parse(in_handle, base_dict=seq_dict):
-#    sequence = rec.seq
-#    taxon = rec.id
-#    #print(f">{taxon}\n{sequence}\n")
+for rec in GFF.parse(in_handle, base_dict=seq_dict):
+    sequence = rec.seq
+    taxon = rec.id
+    print(rec)
 
-in_gff = GFF.parse(in_handle, base_dict=seq_dict)
-out_handle = open("new_gff_annotated.gff", "w")
-GFF.write(in_gff, out_handle)
+#in_gff = GFF.parse(in_handle, base_dict=seq_dict)
 
-in_handle.close()
