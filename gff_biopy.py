@@ -9,15 +9,16 @@ in_seq_handle.close()
 in_file = "raw_barrnap.gff3"
 in_handle = open(in_file)
 for rec in GFF.parse(in_handle, base_dict=seq_dict):
-    sequence = rec.seq
+    taxon = rec.description
+    sequence = str(rec.seq)
     guess_number = 0
     print(rec.description)
     for feature in rec.features:
         if feature.qualifiers["Name"][0] == "18S_rRNA":
             feature_loc = feature.location
-            start = feature_loc._start
-            end = feature_loc._end
-            print(start)
+            start = int(feature_loc._start)
+            end = int(feature_loc._end)
+            print(sequence[start:end])
             guess_number += 1
             if guess_number == 2:
                 guess_number = 0
