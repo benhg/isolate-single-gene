@@ -14,8 +14,8 @@ for rec in GFF.parse(in_handle, base_dict=seq_dict):
     print(rec.description)
     for feature in rec.features:
         if feature.qualifiers["Name"][0] == "18S_rRNA":
-            print(feature)
-            print(guess_number)
+            feature_loc = feature.location
+            print(feature_loc)
             guess_number += 1
             if guess_number == 2:
                 guess_number = 0
