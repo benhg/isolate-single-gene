@@ -12,7 +12,7 @@ with open("IPedibility_18S_guesses.fasta", "w") as fh:
     for rec in GFF.parse(in_handle, base_dict=seq_dict):
         taxon = rec.description
         sequence = str(rec.seq)
-        guess_number = 0
+        guess_number = 1
         print(rec.description)
         for feature in rec.features:
             if feature.qualifiers["Name"][0] == "18S_rRNA":
@@ -22,8 +22,8 @@ with open("IPedibility_18S_guesses.fasta", "w") as fh:
                 feature = sequence[start:end]
                 fh.write(f">{taxon}, guess {guess_number}\n{feature}\n")
                 guess_number += 1
-                if guess_number == 2:
-                    guess_number = 0
+                if guess_number == 3:
+                    guess_number = 1
 
 #in_gff = GFF.parse(in_handle, base_dict=seq_dict)
 
