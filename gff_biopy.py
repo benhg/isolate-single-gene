@@ -13,12 +13,12 @@ for rec in GFF.parse(in_handle, base_dict=seq_dict):
     guess_number = 0
     print(rec.description)
     for feature in rec.features:
-    	if feature.qualifiers["Name"] == "18S_rRNA":
-    		print(feature)
-    		print(guess_number)
-    		guess_number += 1
-    		if guess_number == 2:
-    			guess_number = 0
+        if feature.qualifiers["Name"] == "18S_rRNA":
+            print(feature)
+            print(guess_number)
+            guess_number += 1
+            if guess_number == 2:
+                guess_number = 0
 
 #in_gff = GFF.parse(in_handle, base_dict=seq_dict)
 
