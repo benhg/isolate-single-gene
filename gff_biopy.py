@@ -11,7 +11,8 @@ in_handle = open(in_file)
 for rec in GFF.parse(in_handle, base_dict=seq_dict):
     sequence = rec.seq
     taxon = rec.id
-    print(rec)
+    # print(rec)
+    print(len(str(sequence)))
     print(rec.description)
     print(rec.features[0])
 
