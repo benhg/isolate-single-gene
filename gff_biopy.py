@@ -25,3 +25,12 @@ with open("IPedibility_18S_guesses.fasta", "w") as fh:
                 if guess_number == 3:
                     guess_number = 1
 
+
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--locations", type=str, help="Path to locations file in GFF3 format")
+    parser.add_argument("--db", type=str, help="Path to database file in FASTA format")
+    parser.add_argument("--out", type=str, help="Path to output file in FASTA format (needs not exist)")
+    args = parser.parse_args()
+    print(args)
