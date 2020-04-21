@@ -1,9 +1,9 @@
-#from BCBio import GFF
-#from Bio import SeqIO
+from BCBio import GFF
+from Bio import SeqIO
 
 
 
-def extract(locations, in_db, out_file, filter=None):
+def extract(locations, in_db, out_file, filter_name=None):
 
     in_seq_handle = open(in_db)
     seq_dict = SeqIO.to_dict(SeqIO.parse(in_seq_handle, "fasta"))
@@ -16,8 +16,14 @@ def extract(locations, in_db, out_file, filter=None):
             sequence = str(rec.seq)
             for feature in rec.features:
                 # Filter by feature qualifiers name if provided
-
-                if feature.qualifiers["Name"][0] == "18S_rRNA":
+                if filter_name:
+                    if feature.qualifiers["Name"][0] == filter_name:
+                        feature_loc = feature.location
+                        start = int(feature_loc._start)
+                        end = int(feature_loc._end)
+                        feature = sequence[start:end]
+                        fh.write(f">{taxon}, guess {guess_number}\n{feature}\n")
+                else:
                     feature_loc = feature.location
                     start = int(feature_loc._start)
                     end = int(feature_loc._end)
