@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from BCBio import GFF
 from Bio import SeqIO
 
