@@ -53,6 +53,7 @@ if __name__ == '__main__':
         "--filter",
         type=str,
         required=False,
-        help="Name of type of feature to extract. Stored as a name in the qualifiers section. Example: '18S_rRNA'")
+        help="Name of type of feature to extract.\
+              Stored as a name in the qualifiers section. Example: '18S_rRNA'")
     args = parser.parse_args()
     extract(args.locations, args.db, args.out, args.filter)
