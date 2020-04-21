@@ -1,9 +1,9 @@
-from BCBio import GFF
-from Bio import SeqIO
+#from BCBio import GFF
+#from Bio import SeqIO
 
 
 
-def extract(in_db, locations, out_file):
+def extract(locations, in_db, out_file, filter=None):
 
     in_seq_handle = open(in_db)
     seq_dict = SeqIO.to_dict(SeqIO.parse(in_seq_handle, "fasta"))
@@ -15,6 +15,8 @@ def extract(in_db, locations, out_file):
             taxon = rec.description
             sequence = str(rec.seq)
             for feature in rec.features:
+                # Filter by feature qualifiers name if provided
+
                 if feature.qualifiers["Name"][0] == "18S_rRNA":
                     feature_loc = feature.location
                     start = int(feature_loc._start)
@@ -26,8 +28,9 @@ def extract(in_db, locations, out_file):
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--locations", type=str, help="Path to locations file in GFF3 format")
-    parser.add_argument("--db", type=str, help="Path to database file in FASTA format")
-    parser.add_argument("--out", type=str, help="Path to output file in FASTA format (needs not exist)")
+    parser.add_argument("--locations", required=True, type=str, help="Path to locations file in GFF3 format")
+    parser.add_argument("--db", type=str, required=True, help="Path to database file in FASTA format")
+    parser.add_argument("--out", type=str, required=True, help="Path to output file in FASTA format (needs not exist)")
+    parser.add_argument("--filter", type=str, required=False, help="Name of type of feature to extract. Stored as a name in the qualifiers section. Example: '18S_rRNA'")
     args = parser.parse_args()
-    print(args)
+    extract(args.locations, args.db, args.out, args.filter)
