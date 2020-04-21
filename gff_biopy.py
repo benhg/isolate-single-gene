@@ -35,26 +35,30 @@ def extract(locations, in_db, out_file, filter_name=None):
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument(
+    optional = parser._action_groups.pop() # Edited this line
+    required = parser.add_argument_group('required arguments')
+    required.add_argument(
         "--locations",
         required=True,
         type=str,
         help="Path to locations file in GFF3 format")
-    parser.add_argument(
+    required.add_argument(
         "--db",
         type=str,
         required=True,
         help="Path to database file in FASTA format")
-    parser.add_argument(
+    required.add_argument(
         "--out",
         type=str,
         required=True,
         help="Path to output file in FASTA format (needs not exist)")
-    parser.add_argument(
+    optional.add_argument(
         "--filter",
         type=str,
         required=False,
         help="Name of type of feature to extract.\
               Stored as a name in the qualifiers section. Example: '18S_rRNA'")
+    parser._action_groups.append(optional)
     args = parser.parse_args()
+    print(args)
     extract(args.locations, args.db, args.out, args.filter)
