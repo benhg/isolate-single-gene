@@ -37,7 +37,7 @@ def extract(locations, in_db, out_file, filter_name=None):
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
-    optional = parser._action_groups.pop() # Edited this line
+    optional = parser._action_groups.pop()
     required = parser.add_argument_group('required arguments')
     required.add_argument(
         "--locations",
